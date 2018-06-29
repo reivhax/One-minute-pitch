@@ -1,0 +1,7 @@
+{% macro displayposts(posts) %}
+    {% for post in posts %}
+    	<div class="col-xs-8 col-md-5 col-lg-4">
+    		<p>{{post.text}}</p>
+    	</div>
+    {% endfor %}
+{% endmacro %}
