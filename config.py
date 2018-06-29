@@ -5,8 +5,7 @@ class Config:
     General configuration parent class
     '''
     SECRET_KEY=os.getenv('SECRET_KEY')
-    DATABASE_PASSWORD=os.getenv('DATABASE_PASS')
-    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://xv:{}@localhost/pitches'.format(DATABASE_PASSWORD)
+    SQLALCHEMY_DATABASE_URI=os.getenv('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS=True
 
 class ProdConfig(Config):
