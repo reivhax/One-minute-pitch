@@ -9,3 +9,10 @@ def dashboard():
     title = 'Dashboard' if current_user.is_authenticated else 'Home'
     posts = Post.query.all()
     return render_template('index.html', title = title,posts=posts)
+
+@main.route('/newpitch')
+def pitch():
+    newpost = Post(userid=current_user.id,text=request.args['pitch'])
+    newpost.save()
+    posts = Post.query.all()
+    return render_template('ajaxresponses.html',posts=posts)

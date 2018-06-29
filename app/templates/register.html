@@ -3,10 +3,11 @@
 {% block content %}
 
     <title> {{ title }} </title>
-    <h2>Register</h2>
-    {% if Error %}
-    <div class="modal modal-error">Username already exists</div>
-    {% endif %}
-    {{ wtf.quick_form(Form) }}
-
+    <div class="container">
+      <h2>Register</h2>
+      {% if Error==True %}
+      <div class="modal modal-error">Username already exists</div>
+      {% endif %}
+      {{ wtf.quick_form(Form) }}
+    </div>
 {% endblock %}
