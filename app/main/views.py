@@ -28,7 +28,7 @@ def like(id):
 
 @main.route('/dislike/<id>')
 def dislike(id):
-    if Downvote.query.filter(Downvote.userid==current_user.id,Downvote.postid==id):
+    if Downvote.query.filter(Downvote.userid==current_user.id,Downvote.postid==id).first():
         return 'Error'
     Downvote(userid=current_user.id,postid=id).save()
     return 'Success'

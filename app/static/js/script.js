@@ -26,7 +26,28 @@ $('document').ready(()=>{
         url:'/like/'+pitch,
         method:'GET',
         success:(data)=>{
-          alert(data)
+          if (data=='Success'){
+            l=$('#like'+pitch)[0].textContent
+            likes=parseInt(l)
+            likes++
+            $('#like'+pitch)[0].textContent=' '+likes.toString()+' '
+          }
+        }
+      }
+    )
+  }
+  like=(pitch)=>{
+    $.ajax(
+      {
+        url:'/like/'+pitch,
+        method:'GET',
+        success:(data)=>{
+          if (data=='Success'){
+            l=$('#like'+pitch)[0].textContent
+            likes=parseInt(l)
+            likes++
+            $('#like'+pitch)[0].textContent=' '+likes.toString()+' '
+          }
         }
       }
     )
@@ -34,10 +55,15 @@ $('document').ready(()=>{
   dislike=(pitch)=>{
     $.ajax(
       {
-        url:'/dislike'+pitch,
+        url:'/dislike/'+pitch,
         method:'GET',
         success:(data)=>{
-          alert(data)
+          if (data=='Success'){
+            l=$('#dislike'+pitch)[0].textContent
+            dislikes=parseInt(l)
+            dislikes++
+            $('#dislike'+pitch)[0].textContent=' '+dislikes.toString()+' '
+          }
         }
       }
     )

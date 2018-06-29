@@ -32,10 +32,10 @@ class Post(db.Model):
 		db.session.add(self)
 		db.session.commit()
 	def countlikes(self):
-		likes=Upvote.query.filter(userid==current_user.id,postid==id).count()
+		likes=Upvote.query.filter(Upvote.postid==self.id).count()
 		return likes
 	def countdislikes(self):
-		dislikes=Downvote.query.filter(userid==current_user.id,postid==id).count()
+		dislikes=Downvote.query.filter(Upvote.postid==self.id).count()
 		return dislikes
 class Comment(db.Model):
 	__tablename__='comments'

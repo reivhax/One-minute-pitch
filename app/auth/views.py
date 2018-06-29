@@ -20,7 +20,9 @@ def login():
             if user and user.verifypass(password):
                 login_user(user,Form.remember.data)
                 return redirect(url_for('main.dashboard'))
-        Error=True
+            Error='Wrong Username or Password'
+        else:
+            Error='Please Type a Username or Password'
     return render_template('login.html', title = title ,Form=Form,Error=Error)
 
 @auth.route('/register', methods=["GET","POST"])
