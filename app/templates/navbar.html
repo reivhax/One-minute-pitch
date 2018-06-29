@@ -19,7 +19,7 @@
 
                     </button>
 
-                    <a href="/" class="navbar-brand">SiteName</a>
+                    <a href="/" class="navbar-brand">Minute Pitch</a>
 
                 </div>
 
@@ -30,7 +30,18 @@
                         <li>
                             <a href="/">Home</a>
                         </li>
-                        
+                        {% if not current_user.is_authenticated %}
+                          <li>
+                              <a href="{{url_for('auth.login')}}">Login</a>
+                          </li>
+                          <li>
+                              <a href="{{url_for('auth.register')}}">Register</a>
+                          </li>
+                        {% else %}
+                          <li>
+                              <a href="{{url_for('auth.logout')}}">Logout</a>
+                          </li>
+                        {% endif %}
                     </ul>
 
                 </div>

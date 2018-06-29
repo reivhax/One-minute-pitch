@@ -1,0 +1,15 @@
+{% macro displayposts(posts) %}
+    <div class="panel-group">
+      {% for post in posts %}
+      	<div class="panel panel-default">
+      		<div class="panel-body"><p>{{post.text}}</p></div>
+          <div class="panel-footer">
+            <div class="rightist">
+              <button class="glyphicon glyphicon-thumbs-up" id="like{{post.id}}" onclick="like({{post.id}})"> {{post.countlikes()}} </button>
+              <button class="glyphicon glyphicon-thumbs-down" id="dislike{{post.id}}" onclick="dislike({{post.id}})"> {{post.countdislikes()}} </button>
+            </div>
+          </div>
+      	</div>
+      {% endfor %}
+    </div>
+{% endmacro %}
