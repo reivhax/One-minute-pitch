@@ -5,6 +5,8 @@ class User(db.Model):
 	id=db.Column(db.Integer,primary_key=True)
 	username=db.Column(db.String(255))
 	password=db.Column(db.String(255))
+	def verifypass(self,trial):
+		return self.password == trial
 	def save(self):
 		db.session.add(self)
 		db.session.commit()

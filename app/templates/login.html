@@ -3,7 +3,9 @@
 {% block content %}
 
     <title> {{ title }} </title>
-
+    {% if Error %}
+    <div class="modal modal-error">Unknown username or password</div>
+    {% endif %}
     {{ wtf.quick_form(Form) }}
 
 {% endblock %}
