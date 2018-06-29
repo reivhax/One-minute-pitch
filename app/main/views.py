@@ -21,14 +21,14 @@ def pitch():
 
 @main.route('/like/<id>')
 def like(id):
-    if Upvote.query.filter(userid==current_user.id,postid==id).first():
+    if Upvote.query.filter(Upvote.userid==current_user.id,Upvote.postid==id).first():
         return 'Error'
-    Upvote(userid==current_user.id,postid==id).save()
+    Upvote(userid=current_user.id,postid=id).save()
     return 'Success'
 
 @main.route('/dislike/<id>')
 def dislike(id):
-    if Downvote.query.filter(userid==current_user.id,postid==id):
+    if Downvote.query.filter(Downvote.userid==current_user.id,Downvote.postid==id):
         return 'Error'
-    Downvote(userid==current_user.id,postid==id).save()
+    Downvote(userid=current_user.id,postid=id).save()
     return 'Success'
