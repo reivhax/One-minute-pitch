@@ -11,10 +11,22 @@ $('document').ready(()=>{
           'pitch':pitch
         },
         success:(data)=>{
-          ('#pitches').html(data)
+          $('#pitches').empty()
+          $('#pitches').append(data)
         },
         error: (data)=>{
           alert('Could not post pitch')
+        }
+      }
+    )
+  })
+  $('#like').click((pitch)=>{
+    $.ajax(
+      {
+        url:'/newlike',
+        method:'GET',
+        data:{
+          'pitch':pitch
         }
       }
     )

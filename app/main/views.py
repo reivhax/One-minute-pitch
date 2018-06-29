@@ -12,7 +12,23 @@ def dashboard():
 
 @main.route('/newpitch')
 def pitch():
-    newpost = Post(userid=current_user.id,text=request.args['pitch'])
-    newpost.save()
-    posts = Post.query.all()
-    return render_template('ajaxresponses.html',posts=posts)
+    if current_user.is_authenticated:
+        newpost = Post(userid=current_user.id,text=request.args['pitch'])
+        newpost.save()
+        posts = Post.query.all()
+        return render_template('ajaxresposes.html',posts=posts)
+    return
+
+@main.route('/like/<id>')
+def like(id):
+    if Upvote.query.filter(userid==current_user.id,postid==id).first():
+        return 'Error'
+    Upvote(userid==current_user.id,postid==id).save()
+    return 'Success'
+
+@main.route('/dislike/<id>')
+def dislike(id):
+    if Downvote.query.filter(userid==current_user.id,postid==id):
+        return 'Error'
+    Downvote(userid==current_user.id,postid==id).save()
+    return 'Success'
