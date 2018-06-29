@@ -16,3 +16,12 @@ class Post(db.Model):
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
+class Comment(db.Model):
+	__tablename__='comments'
+	id=db.Column(db.Integer,primary_key=True)
+    userid=db.Column(db.Integer)
+    postid=db.Column(db.Integer)
+	text=db.Column(db.String(65535))
+	def save(self):
+		db.session.add(self)
+		db.session.commit()
