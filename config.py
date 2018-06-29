@@ -4,7 +4,10 @@ class Config:
     '''
     General configuration parent class
     '''
-    pass
+    SECRET_KEY=os.getenv('SECRET_KEY')
+    DATABASE_PASSWORD=os.getenv('DATABASE_PASS')
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://xv:{}@localhost/pomodoro'.format(DATABASE_PASSWORD)
+    SQLALCHEMY_TRACK_MODIFICATIONS=True
 
 class ProdConfig(Config):
     '''
