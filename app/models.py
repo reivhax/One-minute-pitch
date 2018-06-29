@@ -25,3 +25,13 @@ class Comment(db.Model):
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
+class Upvote(db.Model):
+    __tablename__='upvotes'
+    id=db.Column(db.Integer,primary_key=True)
+    userid=db.Column(db.Integer)
+    postid=db.Column(db.Integer)
+class Downvote(db.Model):
+    __tablename__='downvotes'
+    id=db.Column(db.Integer,primary_key=True)
+    userid=db.Column(db.Integer)
+    postid=db.Column(db.Integer)
