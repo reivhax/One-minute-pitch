@@ -20,15 +20,26 @@ $('document').ready(()=>{
       }
     )
   })
-  $('#like').click((pitch)=>{
+  like=(pitch)=>{
     $.ajax(
       {
-        url:'/newlike',
+        url:'/like/'+pitch,
         method:'GET',
-        data:{
-          'pitch':pitch
+        success:(data)=>{
+          alert(data)
         }
       }
     )
-  })
+  }
+  dislike=(pitch)=>{
+    $.ajax(
+      {
+        url:'/dislike'+pitch,
+        method:'GET',
+        success:(data)=>{
+          alert(data)
+        }
+      }
+    )
+  }
 })
