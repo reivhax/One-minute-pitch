@@ -11,6 +11,10 @@ class User(db.Model,UserMixin):
 	id=db.Column(db.Integer,primary_key=True)
 	username=db.Column(db.String(255))
 	password=db.Column(db.String(255))
+	posts = db.relationship('Post', backref='user', lazy='dynamic')
+	likes = db.relationship('Upvote', backref='user', lazy='dynamic')
+	dislikes = db.relationship('Downvote', backref='user', lazy='dynamic')
+
 	def verifypass(self,trial):
 		return check_password_hash(self.password,trial)
 	@property
@@ -22,43 +26,45 @@ class User(db.Model,UserMixin):
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
+	def __repr__(self):
+		return '<User %r>' % self.username
 
 class Post(db.Model):
 	__tablename__='posts'
 	id=db.Column(db.Integer,primary_key=True)
-	userid=db.Column(db.Integer)
 	text=db.Column(db.String(65535))
+	userid=db.Column(db.Integer, db.ForeignKey('users.id'))
+	likes=db.relationship('Upvote', backref='post', lazy='dynamic')
+	dislikes=db.relationship('Downvote', backref='post', lazy='dynamic')
+	comments=db.relationship('Comment', backref='post', lazy='dynamic')
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
-	def countlikes(self):
-		likes=Upvote.query.filter(Upvote.postid==self.id).count()
-		return likes
-	def countdislikes(self):
-		dislikes=Downvote.query.filter(Upvote.postid==self.id).count()
-		return dislikes
+
 class Comment(db.Model):
 	__tablename__='comments'
 	id=db.Column(db.Integer,primary_key=True)
-	userid=db.Column(db.Integer)
-	postid=db.Column(db.Integer)
+	userid=db.Column(db.Integer, db.ForeignKey('users.id'))
+	postid=db.Column(db.Integer, db.ForeignKey('posts.id'))
 	text=db.Column(db.String(65535))
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
+
 class Upvote(db.Model):
 	__tablename__='upvotes'
 	id=db.Column(db.Integer,primary_key=True)
-	userid=db.Column(db.Integer)
-	postid=db.Column(db.Integer)
+	userid=db.Column(db.Integer, db.ForeignKey('users.id'))
+	postid=db.Column(db.Integer, db.ForeignKey('posts.id'))
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
+
 class Downvote(db.Model):
 	__tablename__='downvotes'
 	id=db.Column(db.Integer,primary_key=True)
-	userid=db.Column(db.Integer)
-	postid=db.Column(db.Integer)
+	userid=db.Column(db.Integer, db.ForeignKey('users.id'))
+	postid=db.Column(db.Integer, db.ForeignKey('posts.id'))
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
