@@ -19,16 +19,25 @@ def pitch():
         return render_template('ajaxresposes.html',posts=posts)
     return
 
+@main.route('/newcomment/<id>')
+def comment(id):
+    if current_user.is_authenticated:
+        newcomment = Comment(userid=current_user.id,postid=id,text=request.args['comment'])
+        newcomment.save()
+        posts = Post.query.all()
+        return render_template('ajaxresposes.html',posts=posts)
+    return
+
 @main.route('/like/<id>')
 def like(id):
-    if Upvote.query.filter(Upvote.userid==current_user.id,Upvote.postid==id).first():
+    if current_user.likes.filter(Upvote.postid==id).first():
         return 'Error'
     Upvote(userid=current_user.id,postid=id).save()
     return 'Success'
 
 @main.route('/dislike/<id>')
 def dislike(id):
-    if Downvote.query.filter(Downvote.userid==current_user.id,Downvote.postid==id).first():
+    if current_user.dislikes.filter(Downvote.postid==id).first():
         return 'Error'
     Downvote(userid=current_user.id,postid=id).save()
     return 'Success'
