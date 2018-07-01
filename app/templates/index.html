@@ -17,8 +17,15 @@
         </form>
       </div>
       {% endif %}
-      <div class="pitches">
-        {{ macro.displayposts(posts) }}
+      <h3 class="navbarpadder">Pitches:</h3>
+      <div id="myBtnContainer">
+        <button class="btn" onclick="filterelements('post')">Show all</button>
+        {% for category in categories %}
+          <button class="btn" onclick="filterelements('{{category[0].replace(' ','-')}}')">{{category[0]}}</button>
+        {% endfor %}
+      </div>
+      <div id="pitches" class="panel-group">
+        {{ macro.displayposts(posts,current_user) }}
       </div>
     </div>
 {% endblock %}
