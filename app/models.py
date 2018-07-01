@@ -1,4 +1,5 @@
 from . import db
+from random import randrange
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 from . import login_manager
@@ -90,3 +91,12 @@ class Downvote(db.Model):
 	def selfdestruct(self):
 		db.session.delete(self)
 		db.session.commit()
+
+class Bloopers(db.Model):
+	id=db.Column(db.Integer,primary_key=True)
+	text=db.Column(db.String(65535))
+	@classmethod
+	def getrandom(self):
+		length=self.query.count()
+		for i in range(5):
+			yield self.query.get(randrange(length)).text
