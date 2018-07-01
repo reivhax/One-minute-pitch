@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+{% import 'bootstrap/wtf.html' as wtf %}
+<!-- Content block -->
+{% block content %}
+
+    <title> {{ title }} </title>
+
+    <div class="container everything">
+      <h3 class="navbarpadder">Your Favourites:</h3>
+      <div id="pitches" class="panel-group">
+        {{ macro.displayposts(posts,current_user) }}
+      </div>
+    </div>
+{% endblock %}
