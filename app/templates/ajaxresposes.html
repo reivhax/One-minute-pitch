@@ -1,2 +1,7 @@
 {% import 'macros.html' as macro %}
-{{ macro.displayposts(posts) }}
+
+{% if type=='post' %}
+  {{ macro.displayposts(posts,current_user) }}
+{% else %}
+  {{ macro.displaycomments(comments) }}
+{% endif %}

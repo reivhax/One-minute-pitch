@@ -2,17 +2,19 @@ $('document').ready(()=>{
   $('#createform').submit((event)=>{
     event.preventDefault()
     pitch=$('#Pitch').val().trim()
+    category=$('#catchoose').val().trim()
     if (pitch.length < 2){return}
     $.ajax(
       {
         url:'/newpitch',
-        method:'GET',
         data:{
-          'pitch':pitch
+          'pitch':pitch,
+          'category':category
         },
+        method:'GET',
         success:(data)=>{
-          $('#pitches').empty()
-          $('#pitches').append(data)
+          $("#pitches").prepend(data)
+          $('#createform')[0].reset()
         },
         error: (data)=>{
           alert('Could not post pitch')
