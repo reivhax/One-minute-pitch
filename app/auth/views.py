@@ -41,7 +41,7 @@ def register():
                 user=User(username=username,passwd=password)
                 user.save()
                 return redirect(url_for('auth.login'))
-            Error=True
+            Error='Username Already taken'
     return render_template('register.html', title = title ,Form=Form,Error=Error)
 
 @auth.route('/logout')
