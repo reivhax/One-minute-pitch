@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+<!-- Content block -->
+{% block content %}
+
+    <title> {{ title }} </title>
+
+    <div class="container">
+      <h2>My Account Management</h2>
+      <div class="panel-group">
+        <div class="panel panel-info">
+          <div class="panel-heading  animate">
+            <h4 class="panel-title" onclick="$('#mypitches').slideToggle(400)">
+              <span>My Pitches (<span id="postcount">{{current_user.posts.count()}}</span>)</span>
+            </h4>
+          </div>
+          <div id="mypitches" class="panel-collapse collapse">
+            <div class="panel-body">
+              {{macro.sudodisplayposts(posts)}}
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-info">
+          <div class="panel-heading animate">
+            <h4 class="panel-title" onclick="$('#mycomments').slideToggle(400)">
+              <span>My Comments (<span id="commentcount">{{current_user.comments.count()}}</span>)</span>
+            </h4>
+          </div>
+          <div id="mycomments" class="panel-collapse collapse">
+            <div class="panel-body">
+              {{macro.sudodisplaycomments(comments)}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
