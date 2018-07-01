@@ -44,8 +44,14 @@ class Post(db.Model):
 	dislikes=db.relationship('Downvote', backref='post', lazy='dynamic')
 	comments=db.relationship('Comment', backref='post', lazy='dynamic')
 	userfavs=db.relationship('Favourite', backref='post', lazy='dynamic')
+
 	def save(self):
 		db.session.add(self)
+		db.session.commit()
+	def selfdestruct(self):
+		for child in self.likes.all()+self.dislikes.all()+self.comments.all():
+			child.selfdestruct()
+		db.session.delete(self)
 		db.session.commit()
 
 class Comment(db.Model):
@@ -57,6 +63,9 @@ class Comment(db.Model):
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
+	def selfdestruct(self):
+		db.session.delete(self)
+		db.session.commit()
 
 class Upvote(db.Model):
 	__tablename__='upvotes'
@@ -66,6 +75,9 @@ class Upvote(db.Model):
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
+	def selfdestruct(self):
+		db.session.delete(self)
+		db.session.commit()
 
 class Downvote(db.Model):
 	__tablename__='downvotes'
@@ -74,4 +86,7 @@ class Downvote(db.Model):
 	postid=db.Column(db.Integer, db.ForeignKey('posts.id'))
 	def save(self):
 		db.session.add(self)
+		db.session.commit()
+	def selfdestruct(self):
+		db.session.delete(self)
 		db.session.commit()
