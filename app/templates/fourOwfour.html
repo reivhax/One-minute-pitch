@@ -7,8 +7,15 @@
 
     <div class="container">
 
-        <h1>Error Page</h1>
-        
+        <h1>The url you tried to access doesn't exist</h1>
+        <h4>
+          This is probably caused by:
+          <ul>
+            {% for blooper in bloopers %}
+              <li><h4>{{blooper}}</h4></li>
+            {% endfor %}
+          </ul>
+        </h4>
     </div>
 
 {% endblock %}
