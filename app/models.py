@@ -12,8 +12,10 @@ class User(db.Model,UserMixin):
 	username=db.Column(db.String(255))
 	password=db.Column(db.String(255))
 	posts = db.relationship('Post', backref='user', lazy='dynamic')
+	comments = db.relationship('Comment', backref='user', lazy='dynamic')
 	likes = db.relationship('Upvote', backref='user', lazy='dynamic')
 	dislikes = db.relationship('Downvote', backref='user', lazy='dynamic')
+	favorites=db.relationship('Favourite', backref='user', lazy='dynamic')
 
 	def verifypass(self,trial):
 		return check_password_hash(self.password,trial)
@@ -26,6 +28,9 @@ class User(db.Model,UserMixin):
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
+	def favs(self):
+		for fav in self.favorites.all():
+			yield fav.post
 	def __repr__(self):
 		return '<User %r>' % self.username
 
@@ -34,9 +39,11 @@ class Post(db.Model):
 	id=db.Column(db.Integer,primary_key=True)
 	text=db.Column(db.String(65535))
 	userid=db.Column(db.Integer, db.ForeignKey('users.id'))
+	category=db.Column(db.String(255))
 	likes=db.relationship('Upvote', backref='post', lazy='dynamic')
 	dislikes=db.relationship('Downvote', backref='post', lazy='dynamic')
 	comments=db.relationship('Comment', backref='post', lazy='dynamic')
+	userfavs=db.relationship('Favourite', backref='post', lazy='dynamic')
 	def save(self):
 		db.session.add(self)
 		db.session.commit()
