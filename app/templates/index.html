@@ -6,13 +6,27 @@
 
     <title> {{ title }} </title>
 
-    <div class="container">
+    <div class="container everything">
       {% if current_user.is_authenticated %}
-      <script src="/static/js/script.js"></script>
-      <h3>New Pitch</h3>
-      <div class="rightist">
-        <form class="form" id ="createform">
-          <textarea id="Pitch" class="form-control" cols="30" rows="5" placeholder="Type Pitch"></textarea>
+      <h3>New Pitch:</h3>
+      <div>
+        <form class="form" id ="createform" autocomplete="off">
+          <div class="form-group">
+            <label for="Pitch">Pitch:</label>
+            <input id="Pitch" class="form-control" cols="30" rows="5" placeholder="Type Pitch" name="pitch" required></input>
+          </div>
+          <div class="form-group">
+            <label for="catchoose">Category:</label>
+
+            <select name="category" id="catchoose" class="form-control" onchange="recordchange(this.selectedIndex,{{categories.__len__()}})">
+              {% for category in categories %}
+                <option value="{{category[0]}}" style="color: #555">{{category[0]}}</option>
+              {% endfor %}
+              <option value="-" style="color: #000">New</option>
+            </select>
+            <input type="text" id="manual" class="form-control" style="display: none" placeholder="Type new category">
+
+          </div>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
