@@ -5,8 +5,8 @@
       		<div class="panel-body"><p>{{post.text}}</p></div>
           <div class="panel-footer">
             <div class="rightist">
-              <button class="glyphicon glyphicon-thumbs-up" id="like{{post.id}}" onclick="like({{post.id}})"> {{post.countlikes()}} </button>
-              <button class="glyphicon glyphicon-thumbs-down" id="dislike{{post.id}}" onclick="dislike({{post.id}})"> {{post.countdislikes()}} </button>
+              <button class="glyphicon glyphicon-thumbs-up" id="like{{post.id}}" onclick="like({{post.id}})"> {{post.likes.count()}} </button>
+              <button class="glyphicon glyphicon-thumbs-down" id="dislike{{post.id}}" onclick="dislike({{post.id}})"> {{post.dislikes.count()}} </button>
             </div>
           </div>
       	</div>
