@@ -1,12 +1,78 @@
-{% macro displayposts(posts) %}
+{% macro displaycomments(comments) %}
+  {% for comment in comments %}
+  <div>
+    <strong>{{comment.user.username}} : </strong>
+    <span>{{comment.text}}</span>
+  </div>
+  {% endfor %}
+{% endmacro %}
+
+{% macro displayposts(posts,user) %}
+      {% for post in posts %}
+      	<div class="panel panel-default post {{post.category.replace(' ','-')}}" style="display: inline-block" id="post{{post.id}}">
+          <em class="small">{{post.category}}</em>
+          {% if user.is_authenticated %}
+          {% if post in user.favs() %}
+          <div class="glyphicon glyphicon-ok pull-right love" onclick="fav({{post.id}},this)"></div>
+          {% else %}
+          <div class="glyphicon glyphicon-heart pull-right love" onclick="fav({{post.id}},this)"></div>
+          {% endif %}
+          {% endif %}
+          <div class="panel-body"><h5>{{post.text}}</h5></div>
+          <div class="panel-footer">
+            <div id="commentssection{{post.id}}" class="commentssection">
+              <div id="comments{{post.id}}">
+                {{displaycomments(post.comments.all())}}
+              </div>
+              {% if user.is_authenticated %}
+                <form class="form form-inline" id="comment{{post.id}}" onsubmit="submitcomment({{post.id}});return false">
+                  <input name="reaction" class="form-control commentinput" cols="30" rows="1" placeholder="React ..." required></input>
+                  <input type="hidden" value="{{post.id}}" name="post">
+                  <button type="submit" class="btn btn-success smaller">send</button>
+                </form>
+              {% endif %}
+            </div>
+            <div class="rightist">
+              <a onclick="$('#commentssection{{post.id}}').slideToggle();$('html,body').animate({scrollTop: $('#post{{post.id}}').offset().top-50},'slow');" class="pull-left">
+                <span id="commentscount{{post.id}}">{{post.comments.count()}}</span> Comments
+              </a>
+              <div class="label glyphicon glyphicon-thumbs-up like" id="like{{post.id}}" onclick="like({{post.id}})"> {{post.likes.count()}} </div>
+              <div class="label glyphicon glyphicon-thumbs-down dislike" id="dislike{{post.id}}" onclick="dislike({{post.id}})"> {{post.dislikes.count()}} </div>
+            </div>
+          </div>
+      	</div>
+      {% endfor %}
+{% endmacro %}
+
+{% macro sudodisplaycomments(comments) %}
+  <div class="panel-group">
+    {% for comment in comments %}
+    <div class="panel panel-default" style="display: inline-block" id="comment{{comment.id}}">
+      <div class="glyphicon glyphicon-remove dislike pull-right" onclick="removecomment({{comment.id}})"></div>
+      <div class="panel-body">
+        <span>{{comment.text}}</span>
+      </div>
+      <div class="panel-footer lessheight">
+        <span>To : {{comment.post.text}}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{% macro sudodisplayposts(posts) %}
     <div class="panel-group">
       {% for post in posts %}
-      	<div class="panel panel-default">
-      		<div class="panel-body"><p>{{post.text}}</p></div>
+      	<div class="panel panel-default" style="display: inline-block" id="post{{post.id}}">
+      		<div class="panel-body">
+            <div class="glyphicon glyphicon-remove dislike pull-right" onclick="removepost({{post.id}})"></div>
+            <h5>{{post.text}}</h5>
+          </div>
           <div class="panel-footer">
             <div class="rightist">
-              <button class="glyphicon glyphicon-thumbs-up" id="like{{post.id}}" onclick="like({{post.id}})"> {{post.likes.count()}} </button>
-              <button class="glyphicon glyphicon-thumbs-down" id="dislike{{post.id}}" onclick="dislike({{post.id}})"> {{post.dislikes.count()}} </button>
+              <a class="pull-left">{{post.comments.count()}} Comments</a>
+              <div class="label glyphicon glyphicon-thumbs-up like"> {{post.likes.count()}} </div>
+              <div class="label glyphicon glyphicon-thumbs-down dislike"> {{post.dislikes.count()}} </div>
             </div>
           </div>
       	</div>
