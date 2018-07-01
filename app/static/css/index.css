@@ -1,3 +1,49 @@
+.navbarpadder{
+  margin-top: 50px;
+}
 .rightist{
   text-align: right
+}
+.love{
+  color: #AA0000;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-right: 6px;
+}
+.love:hover{
+  color: #CC0000;
+}
+.nopadding{
+  padding: 0px;
+  padding-left: 4px;
+}
+.commentssection{
+  display: none;
+}
+.like{
+  color: #008800;
+  cursor: pointer;
+}
+.like:hover{
+  color: #00BB00;
+}
+a{
+  cursor: pointer;
+}
+.dislike{
+  color: #880000;
+  cursor: pointer;
+}
+.dislike:hover{
+  color: #BB0000;
+}
+.animate{
+  cursor: pointer;
+}
+.large{
+  font-size: 15pt;
+}
+.lessheight{
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
