@@ -35,6 +35,18 @@ class User(db.Model,UserMixin):
 	def __repr__(self):
 		return '<User %r>' % self.username
 
+class Favourite(db.Model):
+	__tablename__='favourites'
+	id=db.Column(db.Integer,primary_key=True)
+	userid=db.Column(db.Integer, db.ForeignKey('users.id'))
+	postid=db.Column(db.Integer, db.ForeignKey('posts.id'))
+	def save(self):
+		db.session.add(self)
+		db.session.commit()
+	def selfdestruct(self):
+		db.session.delete(self)
+		db.session.commit()
+
 class Post(db.Model):
 	__tablename__='posts'
 	id=db.Column(db.Integer,primary_key=True)
