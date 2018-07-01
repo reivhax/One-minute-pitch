@@ -5,8 +5,12 @@
     <title> {{ title }} </title>
     <div class="container">
       <h2>Register</h2>
-      {% if Error==True %}
-      <div class="modal modal-error">Username already exists</div>
+      {% if Error %}
+      <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        {{Error}}
+      </div>
       {% endif %}
       {{ wtf.quick_form(Form) }}
     </div>
