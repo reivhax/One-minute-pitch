@@ -1,8 +1,8 @@
 # One mute pitch allows users to:
 
-. submit a pitch in any category.
-. see the pitches other people have posted.
-. favourite other people's posts
-. vote on the pitch they liked by giving it a downvote or upvote.
-. comment on the different pitches.
-. view the different categories.
+1. submit a pitch in any category.
+2. see the pitches other people have posted.
+3. favourite other people's posts
+4. vote on the pitch they liked by giving it a downvote or upvote.
+5. comment on the different pitches.
+6. view the different categories.
