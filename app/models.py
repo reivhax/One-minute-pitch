@@ -50,7 +50,7 @@ class Favourite(db.Model):
 class Post(db.Model):
 	__tablename__='posts'
 	id=db.Column(db.Integer,primary_key=True)
-	text=db.Column(db.String(65535))
+	text=db.Column(db.Text())
 	userid=db.Column(db.Integer, db.ForeignKey('users.id'))
 	category=db.Column(db.String(255))
 	likes=db.relationship('Upvote', backref='post', lazy='dynamic')
@@ -72,7 +72,7 @@ class Comment(db.Model):
 	id=db.Column(db.Integer,primary_key=True)
 	userid=db.Column(db.Integer, db.ForeignKey('users.id'))
 	postid=db.Column(db.Integer, db.ForeignKey('posts.id'))
-	text=db.Column(db.String(65535))
+	text=db.Column(db.Text())
 	def save(self):
 		db.session.add(self)
 		db.session.commit()

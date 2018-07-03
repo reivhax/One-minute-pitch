@@ -6,6 +6,7 @@ from flask_login import LoginManager
 
 
 
+
 # Instances of flask extensions
 # Instance of LoginManger and using its methods
 login_manager = LoginManager()
@@ -41,6 +42,5 @@ def create_app(config_name):
     # Regestering the auth bluprint
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
-
 
     return app

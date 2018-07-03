@@ -84,10 +84,14 @@ $('document').ready(()=>{
   recordchange=(ind,ls)=>{
     if (ind==ls){
       $("#manual").show('normal')
+      $("#catchoose").removeAttr('name')
       $("#manual").attr('required','')
+      $("#manual").attr('name','category')
     }else{
       $("#manual").hide('normal')
       $("#manual").removeAttr('required')
+      $("#manual").removeAttr('name')
+      $("#catchoose").attr('name','category')
     }
   }
   filterelements=c=>{
