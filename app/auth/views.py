@@ -14,10 +14,11 @@ def login():
     Error=False
     if Form.validate_on_submit():
         username=str(Form.username.data)
-        password=str(Form.username.data)
+        password=str(Form.password.data)
         if username and password:
             user=User.query.filter(User.username==username).first()
             if user and user.verifypass(password):
+                print(password)
                 login_user(user,Form.remember.data)
                 return redirect(url_for('main.dashboard'))
             Error='Wrong Username or Password'
@@ -34,7 +35,7 @@ def register():
     Error=False
     if Form.validate_on_submit():
         username=str(Form.username.data)
-        password=str(Form.username.data)
+        password=str(Form.password.data)
         if username and password:
             user=User.query.filter(User.username==username).first()
             if not user:
