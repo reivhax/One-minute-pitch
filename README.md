@@ -1,12 +1,11 @@
 # One Minute Pitch
 > A website that helps you speak to the world about your ideas
 
-One to two paragraph statement about your product and what it does.
-(Live Link)[http://minutepitch.herokuapp.com/]
+[Live Link](http://minutepitch.herokuapp.com/)
+
+This website will allow you to submit your pitches and other users will vote on them and leave comments to give their feedback on them.
 
 ![One minute pitch preview](http://i.imgur.com/Rcs0jJx.png)
-
-[Live Link](http://minutepitch.herokuapp.com/)
 
 ## As users you can
 
