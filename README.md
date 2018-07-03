@@ -6,6 +6,7 @@ One to two paragraph statement about your product and what it does.
 
 ![One minute pitch preview](http://i.imgur.com/Rcs0jJx.png)
 
+[Live Link](http://minutepitch.herokuapp.com/)
 
 ## As users you can
 
@@ -60,4 +61,4 @@ To access the Code behind this site, you will need to:
   ```
 ## Licensing
 This Project is under the MIT License 2017
-See more about this in the (License.md)[https://github.com/reivhax/One-minute-pitch/blob/master/License.md] File
+See more about this in the [License.md](https://github.com/reivhax/One-minute-pitch/blob/master/License.md) File
