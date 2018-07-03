@@ -2,10 +2,10 @@
 > A website that helps you speak to the world about your ideas
 
 One to two paragraph statement about your product and what it does.
+(Live Link)[http://minutepitch.herokuapp.com/]
 
 ![One minute pitch preview](http://i.imgur.com/Rcs0jJx.png)
 
-(Live Link)[http://minutepitch.herokuapp.com/]
 
 ## As users you can
 
