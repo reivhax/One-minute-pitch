@@ -10,12 +10,12 @@ One to two paragraph statement about your product and what it does.
 
 ## As users you can
 
-. submit a pitch in any category.
-. see the pitches other people have posted.
-. favourite other people's posts
-. vote on the pitch they liked by giving it a downvote or upvote.
-. comment on the different pitches.
-. view the different categories.
+* submit a pitch in any category.
+* see the pitches other people have posted.
+* favourite other people's posts
+* vote on the pitch they liked by giving it a downvote or upvote.
+* comment on the different pitches.
+* view the different categories.
 
 ## Usage example
 
@@ -41,21 +41,21 @@ or posts if your not satisfied by them.
 
 To access the Code behind this site, you will need to:
 
-. Clone this repo:
+1. Clone this repo:
   ```bash
   git clone https://github.com/reivhax/One-minute-pitch
   ```
-. Move to the folder and install requirements
+2. Move to the folder and install requirements
   ```bash
   cd One-minute-pitch
   pip install -r requirements.txt
   ```
-. Export Configurations to environment
+3. Export Configurations to environment
   ```bash
   export SECRET_KEY='{Your Secret Key}'
   export DATABASE_URL='postgresql+psycopg2://{Your username}:{password}@localhost/{Your database name}'
   ```
-. Run the application
+4. Run the application
   ```bash
   python3.6 manage.py server
   ```
