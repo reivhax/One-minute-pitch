@@ -1,4 +1,4 @@
-# One mute pitch allows users to:
+# One minute pitch allows users to:
 
 1. submit a pitch in any category.
 2. see the pitches other people have posted.
